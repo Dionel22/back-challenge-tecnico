@@ -1,9 +1,7 @@
-const { Form, User } = require("../db")
+const { Form } = require("../db")
 
-const getForms = async (UserId) => {
-    const forms = await Form.findAll({
-        where: { UserId }
-    })
+const getForms = async () => {
+    const forms = await Form.findAll();
     return forms; 
 };
 
@@ -23,9 +21,8 @@ const putForms = async (id, name, phone, startDate, preferredLanguage, howFound,
     return forms;
 };
 
-const postForms = async (UserId ,name, phone, startDate, preferredLanguage, howFound, newsletterSubscription) => {
+const postForms = async (name, phone, startDate, preferredLanguage, howFound, newsletterSubscription) => {
     const forms = await Form.create({name, phone, startDate, preferredLanguage, howFound, newsletterSubscription});
-    await forms.setUser(UserId);
     return forms;
 };
 
