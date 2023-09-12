@@ -24,7 +24,7 @@ const getHandleForm = async (req, res) => {
 };
 
 const putHandleForm = async (req, res) => {
-    const { id, name, phone, date, preferredLanguage, howFound, newsletterSubcription } = req.body;
+    const { id, name, phone, startDate, preferredLanguage, howFound, newsletterSubscription } = req.body;
     const token = req.headers.authorization;
     try {
 		if (!token) {
@@ -39,7 +39,7 @@ const putHandleForm = async (req, res) => {
             return res.status(400).json({ error: "no tenes token" });
           }
 
-        const response = await putForms(id, name, phone, date, preferredLanguage, howFound, newsletterSubcription)
+        const response = await putForms(id, name, phone, startDate, preferredLanguage, howFound, newsletterSubscription)
         return res.status(200).json(response); 
     } catch (error) {
         console.log(error.message);
@@ -48,19 +48,20 @@ const putHandleForm = async (req, res) => {
 };
 
 const postHandleForm = async (req, res) => {
-    const { name, phone, date, preferredLanguage, howFound, newsletterSubcription } = req.body;
+    const { name, phone, startDate, preferredLanguage, howFound, newsletterSubscription } = req.body;
     const token = req.headers.authorization;
     try {
-		if (!token) {
+		/*if (!token) {
 		  return res.status(401).json({ message: 'Token no proporcionado' });
 		}
         // Verifica y decodifica el token para obtener el userId
 		
 		  const tokenParts = token.split('Bearer').pop().trim();
 		  const tokenized = jwt.verify(tokenParts, JWT_SECRET);
-		  let  userId = tokenized.userId;
+		  let  userId = tokenized.userId;*/
+          let userId = 1;
 
-        const response = await postForms(userId, name, phone, date, preferredLanguage, howFound, newsletterSubcription)
+        const response = await postForms(userId, name, phone, startDate, preferredLanguage, howFound, newsletterSubscription)
         return res.status(200).json(response);
     } catch (error) {
         console.log(error.message);

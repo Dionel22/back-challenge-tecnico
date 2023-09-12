@@ -7,7 +7,7 @@ const getForms = async (UserId) => {
     return forms; 
 };
 
-const putForms = async (id, name, phone, date, preferredLanguage, howFound, newsletterSubcription) => {
+const putForms = async (id, name, phone, startDate, preferredLanguage, howFound, newsletterSubscription) => {
     const forms = await Form.findByPk(id);
     if(!forms){
         throw Error("no enncotrado.")
@@ -15,17 +15,17 @@ const putForms = async (id, name, phone, date, preferredLanguage, howFound, news
     await forms.update({
         name, 
         phone, 
-        date, 
+        startDate, 
         preferredLanguage, 
         howFound, 
-        newsletterSubcription
+        newsletterSubscription
     });
     return forms;
 };
 
-const postForms = async (userId ,name, phone, date, preferredLanguage, howFound, newsletterSubcription) => {
-    const forms = await Form.create({name, phone, date, preferredLanguage, howFound, newsletterSubcription});
-    await forms.setUser(userId);
+const postForms = async (UserId ,name, phone, startDate, preferredLanguage, howFound, newsletterSubscription) => {
+    const forms = await Form.create({name, phone, startDate, preferredLanguage, howFound, newsletterSubscription});
+    await forms.setUser(UserId);
     return forms;
 };
 

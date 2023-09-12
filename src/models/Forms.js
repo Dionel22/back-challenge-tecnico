@@ -12,12 +12,11 @@ module.exports = FormModel  = (sequelise) => {
             allowNull: false
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
-        date: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
+        startDate: {
+            type: DataTypes.DATEONLY
         },
         preferredLanguage: {
             type: DataTypes.STRING,
@@ -27,9 +26,8 @@ module.exports = FormModel  = (sequelise) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        newsletterSubcription: {
+        newsletterSubscription: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
         },
     })
 }
