@@ -1,9 +1,21 @@
 const { getForms, putForms, postForms } = require("../controllers/controllerForm");
+const { Form } = require("../db")
 
 
 const getHandleForm = async (req, res) => {
     try {
         const response = await getForms()
+    return res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    return res.status(400).json({ error: error.message });
+    }
+};
+
+const idHandleForm = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const response = await Form.findByPk(id)
     return res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
@@ -44,6 +56,7 @@ const postHandleForm = async (req, res) => {
  
 module.exports = {
     getHandleForm,
+    idHandleForm,
     putHandleForm,
     postHandleForm
 }
